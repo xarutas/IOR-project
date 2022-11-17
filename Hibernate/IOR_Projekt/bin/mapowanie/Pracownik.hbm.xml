@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-03-11 12:23:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+  <joined-subclass extends="model.Osoba" lazy="false" name="model.Pracownik"
+  node="pracownik" table="PRACOWNICY" >
+    <key foreign-key="FK_PRAC_OS">
+      <column name="ID_PRAC"/>
+    </key>
+    <many-to-one cascade="save-update" class="model.Adres" 
+    column="ADRES_ID" foreign-key="FK_PC_AD" 
+    name="adres" unique="false"/>
+    <property name="stanowisko" type="java.lang.String">
+      <column name="STANOWISKO"/>
+    </property>
+    <many-to-one cascade="save-update" class="model.Dzial" column="ID_DZIALU"
+    foreign-key="FK_PC_DZIAL" name="dzial" unique="false"/>
+    <set lazy="true" name="dzieci" cascade="save-update" 
+        node="." embed-xml="true">
+      <key foreign-key="FK_DZIECI_PRAC">
+        <column name="ID_PRAC"/>
+      </key>
+      <one-to-many class="model.Dziecko"/>
+    </set>
+    <set cascade="save-update" lazy="true" name="projekty" 
+    table="PRAC_PROJ">
+      <key foreign-key="FK_PROJ_PRAC">
+        <column name="ID_PRAC"/>
+      </key>
+      <many-to-many class="model.Projekt" column="ID_PROJ"/>
+    </set>
+    
+  </joined-subclass>
+</hibernate-mapping>

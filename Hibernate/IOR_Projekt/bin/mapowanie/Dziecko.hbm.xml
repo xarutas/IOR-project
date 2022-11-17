@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-03-11 12:23:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+  <joined-subclass extends="model.Osoba" lazy="false" name="model.Dziecko" table="DZIECI" node="dziecko">
+    <key foreign-key="FK_DZIECI_OS" >
+      <column name="ID_DZIECKA"/>
+    </key>
+    <many-to-one cascade="save-update" class="model.Adres" column="ADRES_ID" foreign-key="FK_DZ_AD" 
+    name="adres" unique="false"/>
+  </joined-subclass>
+</hibernate-mapping>

@@ -1,0 +1,268 @@
+
+    
+    create table ASTRONAUTS (
+       ASTRONAUT_ID integer not null auto_increment,
+        fName varchar(255),
+        lName varchar(255),
+        missionCount integer not null,
+        rank varchar(255),
+        spaceWalksCount integer not null,
+        primary key (ASTRONAUT_ID)
+    ) engine=InnoDB
+
+    
+    create table CARGOS (
+       CARGO_ID integer not null auto_increment,
+        description varchar(255),
+        type varchar(255),
+        TRANSPORT_FLIGHT_ID integer,
+        primary key (CARGO_ID)
+    ) engine=InnoDB
+
+    
+    create table MISSION_SPACECRAFTS (
+       MISSION_ID integer not null,
+        SPACECRAFT_ID integer not null,
+        primary key (MISSION_ID, SPACECRAFT_ID)
+    ) engine=InnoDB
+
+    
+    create table MISSIONS (
+       MISSION_ID integer not null auto_increment,
+        description varchar(255),
+        destination varchar(255),
+        primary key (MISSION_ID)
+    ) engine=InnoDB
+
+    
+    create table MISSIONS_ASTRONAUTS (
+       MISSION_ID integer not null,
+        ASTRONAUT_ID integer not null,
+        primary key (MISSION_ID, ASTRONAUT_ID)
+    ) engine=InnoDB
+
+    
+    create table RESEARCH_MISSIONS (
+       RESEARCH_MISSION_ID integer not null,
+        primary key (RESEARCH_MISSION_ID)
+    ) engine=InnoDB
+
+    
+    create table ROLES (
+       ROLE_ID integer not null auto_increment,
+        role varchar(255),
+        ASTRONAUT_ID integer,
+        MISSION_ID integer,
+        primary key (ROLE_ID)
+    ) engine=InnoDB
+
+    
+    create table SPACECRAFTS (
+       SPACECRAFT_ID integer not null auto_increment,
+        capacity integer not null,
+        name varchar(255),
+        numberOfCrewMembers integer not null,
+        yearOfProduction integer not null,
+        primary key (SPACECRAFT_ID)
+    ) engine=InnoDB
+
+    
+    create table TASKS (
+       TASK_ID integer not null auto_increment,
+        description varchar(255),
+        name varchar(255),
+        RESEARCH_MISSION_ID integer,
+        primary key (TASK_ID)
+    ) engine=InnoDB
+
+    
+    create table TRANSPORT_FLIGHTS (
+       TRANSPORT_FLIGHT_ID integer not null,
+        primary key (TRANSPORT_FLIGHT_ID)
+    ) engine=InnoDB
+
+    
+    alter table CARGOS 
+       add constraint FK_TRANSPORTFLIGHT_CARGOS 
+       foreign key (TRANSPORT_FLIGHT_ID) 
+       references TRANSPORT_FLIGHTS (TRANSPORT_FLIGHT_ID)
+
+    
+    alter table MISSION_SPACECRAFTS 
+       add constraint FK_SPACECRAFT_MISSION 
+       foreign key (SPACECRAFT_ID) 
+       references SPACECRAFTS (SPACECRAFT_ID)
+
+    
+    alter table MISSION_SPACECRAFTS 
+       add constraint FK_MISSION_SPACECRAFT 
+       foreign key (MISSION_ID) 
+       references MISSIONS (MISSION_ID)
+
+    
+    alter table MISSIONS_ASTRONAUTS 
+       add constraint FK_ASTRONAUT_MISSION 
+       foreign key (ASTRONAUT_ID) 
+       references ASTRONAUTS (ASTRONAUT_ID)
+
+    
+    alter table MISSIONS_ASTRONAUTS 
+       add constraint FK_MISSION_ASTRONAUT 
+       foreign key (MISSION_ID) 
+       references MISSIONS (MISSION_ID)
+
+    
+    alter table RESEARCH_MISSIONS 
+       add constraint FK_RESEARCHMISSION_MISSION 
+       foreign key (RESEARCH_MISSION_ID) 
+       references MISSIONS (MISSION_ID)
+
+    
+    alter table ROLES 
+       add constraint FK_ROLE_ASTRONAUT 
+       foreign key (ASTRONAUT_ID) 
+       references ASTRONAUTS (ASTRONAUT_ID)
+
+    
+    alter table ROLES 
+       add constraint FK_ROLE_MISSION 
+       foreign key (MISSION_ID) 
+       references MISSIONS (MISSION_ID)
+
+    
+    alter table TASKS 
+       add constraint FK_RESEARCHMISSION_TASKS 
+       foreign key (RESEARCH_MISSION_ID) 
+       references RESEARCH_MISSIONS (RESEARCH_MISSION_ID)
+
+    
+    alter table TRANSPORT_FLIGHTS 
+       add constraint FK_TRANSPORTFLIGHT_MISSION 
+       foreign key (TRANSPORT_FLIGHT_ID) 
+       references MISSIONS (MISSION_ID)
+
+    insert 
+    into
+        MISSIONS
+        (description, destination) 
+    values
+        (?, ?)
+
+    insert 
+    into
+        MISSIONS
+        (description, destination) 
+    values
+        (?, ?)
+
+    insert 
+    into
+        TRANSPORT_FLIGHTS
+        (TRANSPORT_FLIGHT_ID) 
+    values
+        (?)
+
+    insert 
+    into
+        CARGOS
+        (description, type) 
+    values
+        (?, ?)
+
+    insert 
+    into
+        CARGOS
+        (description, type) 
+    values
+        (?, ?)
+
+    insert 
+    into
+        MISSIONS
+        (description, destination) 
+    values
+        (?, ?)
+
+    insert 
+    into
+        RESEARCH_MISSIONS
+        (RESEARCH_MISSION_ID) 
+    values
+        (?)
+
+    insert 
+    into
+        TASKS
+        (description, name) 
+    values
+        (?, ?)
+
+    insert 
+    into
+        TASKS
+        (description, name) 
+    values
+        (?, ?)
+
+    insert 
+    into
+        MISSIONS
+        (description, destination) 
+    values
+        (?, ?)
+
+    insert 
+    into
+        SPACECRAFTS
+        (capacity, name, numberOfCrewMembers, yearOfProduction) 
+    values
+        (?, ?, ?, ?)
+
+    insert 
+    into
+        SPACECRAFTS
+        (capacity, name, numberOfCrewMembers, yearOfProduction) 
+    values
+        (?, ?, ?, ?)
+
+    update
+        CARGOS 
+    set
+        TRANSPORT_FLIGHT_ID=? 
+    where
+        CARGO_ID=?
+
+    update
+        CARGOS 
+    set
+        TRANSPORT_FLIGHT_ID=? 
+    where
+        CARGO_ID=?
+
+    update
+        TASKS 
+    set
+        RESEARCH_MISSION_ID=? 
+    where
+        TASK_ID=?
+
+    update
+        TASKS 
+    set
+        RESEARCH_MISSION_ID=? 
+    where
+        TASK_ID=?
+
+    insert 
+    into
+        MISSION_SPACECRAFTS
+        (MISSION_ID, SPACECRAFT_ID) 
+    values
+        (?, ?)
+
+    insert 
+    into
+        MISSION_SPACECRAFTS
+        (MISSION_ID, SPACECRAFT_ID) 
+    values
+        (?, ?)

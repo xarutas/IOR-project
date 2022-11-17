@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-03-11 12:23:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+  <class name="model.Dzial" table="DZIALY">
+    <id name="id" type="int">
+      <column name="ID_DZIALU"/>
+      <generator class="native"/>
+    </id>
+    <property name="nazwa" type="java.lang.String">
+      <column name="NAZWA"/>
+    </property>
+    <many-to-one cascade="save-update" class="model.Kierownik" column="ID_KIER" foreign-key="FK_DZIAL_KIER" name="kierownik" unique="true" unique-key="UK_KIER_DZIAL"/>
+    <set cascade="save-update" lazy="true" name="pracownicy">
+      <key foreign-key="FK_DZIAL_PRAC">
+        <column name="ID_DZIALU"/>
+      </key>
+      <one-to-many class="model.Pracownik"/>
+    </set>
+  </class>
+</hibernate-mapping>

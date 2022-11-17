@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-03-11 12:23:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+  <joined-subclass extends="model.Pracownik" lazy="false" name="model.Kierownik" 
+  table="KIEROWNICY" node="kierownik">
+    <key foreign-key="FK_KIER_PRAC">
+      <column name="ID_KIER"/>
+    </key>
+    <property name="dodatek" type="double">
+      <column name="DODATEK"/>
+    </property>
+  </joined-subclass>
+</hibernate-mapping>

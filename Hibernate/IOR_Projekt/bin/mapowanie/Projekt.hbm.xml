@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-03-11 12:23:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+  <class name="model.Projekt" table="PROJEKTY" node="projekt">
+    <id name="id" type="int">
+      <column name="ID_PROJ"/>
+      <generator class="native"/>
+    </id>
+    <property name="nazwa" type="java.lang.String">
+      <column name="NAZWA"/>
+    </property>
+    <property name="dataRoz" type="java.util.GregorianCalendar">
+      <column name="DATAROZ"/>
+    </property>
+    <property name="dataZak" type="java.util.GregorianCalendar">
+      <column name="DATAZAK"/>
+    </property>
+    <set cascade="save-update" inverse="true" lazy="true" 
+    name="pracownicy" table="PRAC_PROJ">
+      <key foreign-key="FK_PRAC_PROJ">
+        <column name="ID_PROJ"/>
+      </key>
+      <many-to-many class="model.Pracownik" column="ID_PRAC"/>
+    </set>
+  </class>
+</hibernate-mapping>

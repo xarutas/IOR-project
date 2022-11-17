@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-03-11 12:23:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+  <class name="model.Osoba" table="OSOBY" node="osoba" >
+    <id name="id" type="int">
+      <column name="ID_OSOBY"/>
+      <generator class="native"/>
+    </id>
+
+    <property name="nazwisko" type="java.lang.String" >
+      <column name="NAZWISKO"/>
+    </property>
+     <property name="imie" type="java.lang.String">
+      <column name="IMIE"/>
+    </property>
+   
+    <property name="dataUr" type="java.util.GregorianCalendar">
+      <column name="DATAUR"/>
+    </property>
+  </class>
+
+</hibernate-mapping>
