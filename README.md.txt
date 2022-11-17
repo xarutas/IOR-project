@@ -1,1 +1,0 @@
-Repo sluzace do rozwoju projektu z IOR

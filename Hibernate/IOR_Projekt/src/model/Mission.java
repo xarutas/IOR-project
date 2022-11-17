@@ -44,8 +44,8 @@ public class Mission implements Serializable {
         return description;
     }
 
-    public Set<Spacecraft> getSpacecraft(){
-        return spacecrafts;
+    public Spacecraft getSpacecraft(){
+        return spacecraft;
     }
 
     public void setDestination(String destination){
@@ -56,8 +56,8 @@ public class Mission implements Serializable {
         this.description = description;
     }
 
-    public void setSpacecrafts(Set<Spacecraft> spacecrafts) {
-        this.spacecrafts = spacecrafts;
+    public void setSpacecrafts(Spacecraft spacecraft) {
+        this.spacecraft = spacecraft;
     }
 
 }
